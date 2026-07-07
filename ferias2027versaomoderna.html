@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>Férias SOP - PMDF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family:'Roboto',sans-serif;
+            background: linear-gradient(135deg, #e8edf2 0%, #d5dce4 100%);
+            color:#1e2a3a;
+            padding:20px;
+            min-height:100vh;
+        }
+        .container {
+            max-width:1400px;
+            margin:0 auto;
+            background:#ffffff;
+            border-radius:24px;
+            box-shadow:0 20px 60px rgba(11,59,92,0.15);
+            padding:30px 25px;
+            transition:all 0.3s ease;
+        }
+        .header {
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            padding-bottom:20px;
+            margin-bottom:25px;
+            border-bottom:4px solid #d4af37;
+            background: linear-gradient(90deg, #0b3b5c 0%, #1a5276 100%);
+            margin:-30px -25px 25px -25px;
+            padding:20px 25px;
+            border-radius:24px 24px 0 0;
+        }
+        .header-left {
+            display:flex;
+            align-items:center;
+            gap:18px;
+        }
+        .header-left .logo-pmdf {
+            width:60px;
+            height:60px;
+            border-radius:50%;
+            border:3px solid #d4af37;
+            background:#fff;
+            padding:5px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            box-shadow:0 4px 15px rgba(212,175,55,0.3);
+        }
+        .header-left .logo-pmdf img {
+            width:50px;
+            height:50px;
+            object-fit:contain;
+        }
+        .header-left .titulo h1 {
+            font-weight:900;
+            font-size:1.8rem;
+            color:#ffffff;
+            letter-spacing:1px;
+            text-shadow:0 2px 4px rgba(0,0,0,0.2);
+        }
+        .header-left .titulo h1 small {
+            font-weight:300;
+            font-size:0.9rem;
+            color:#d4af37;
+            display:block;
+            letter-spacing:2px;
+            text-shadow:none;
+        }
+        .header-right {
+            display:flex;
+            align-items:center;
+            gap:12px;
+        }
+        .header-right .badge {
+            background:rgba(212,175,55,0.2);
+            color:#d4af37;
+            padding:6px 16px;
+            border-radius:30px;
+            font-size:0.75rem;
+            font-weight:700;
+            letter-spacing:1px;
+            border:1px solid rgba(212,175,55,0.3);
+        }
+        .header-right .badge i {
+            margin-right:6px;
+        }
+        .toolbar {
+            display:flex;
+            flex-wrap:wrap;
+            justify-content:space-between;
+            align-items:center;
+            margin-bottom:20px;
+            gap:12px;
+            background:#f8fafc;
+            padding:10px 18px;
+            border-radius:16px;
+            border:1px solid #e8edf2;
+        }
+        .toolbar .identificacao {
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            gap:8px;
+        }
+        .toolbar .identificacao label {
+            font-weight:600;
+            font-size:0.9rem;
+            color:#0b3b5c;
+        }
+        .toolbar .identificacao label i {
+            color:#d4af37;
+            margin-right:4px;
+        }
+        .toolbar .identificacao input {
+            padding:8px 14px;
+            border:2px solid #e2e8f0;
+            border-radius:30px;
+            font-size:0.9rem;
+            width:150px;
+            transition:0.3s;
+            background:#fff;
+        }
+        .toolbar .identificacao input:focus {
+            outline:none;
+            border-color:#0b3b5c;
+            box-shadow:0 0 0 4px rgba(11,59,92,0.1);
+        }
+        .toolbar .identificacao button {
+            padding:8px 22px;
+            border:none;
+            border-radius:30px;
+            background:linear-gradient(135deg,#0b3b5c,#1a5276);
+            color:#fff;
+            font-weight:600;
+            cursor:pointer;
+            font-size:0.85rem;
+            transition:0.3s;
+            display:flex;
+            align-items:center;
+            gap:6px;
+        }
+        .toolbar .identificacao button:hover {
+            transform:translateY(-2px);
+            box-shadow:0 6px 20px rgba(11,59,92,0.3);
+        }
+        .toolbar .identificacao .usuario-atual {
+            font-weight:600;
+            color:#0b3b5c;
+            font-size:0.85rem;
+            margin-left:6px;
+            background:#e8edf2;
+            padding:4px 14px;
+            border-radius:30px;
+        }
+        .toolbar .actions {
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+        }
+        .toolbar .actions button {
+            padding:8px 18px;
+            border:none;
+            border-radius:30px;
+            font-weight:600;
+            cursor:pointer;
+            font-size:0.8rem;
+            transition:0.3s;
+            display:flex;
+            align-items:center;
+            gap:6px;
+            background:#e8edf2;
+            color:#1e2a3a;
+        }
+        .toolbar .actions button:hover {
+            transform:translateY(-2px);
+            box-shadow:0 4px 15px rgba(0,0,0,0.1);
+        }
+        .toolbar .actions button.admin {
+            background:linear-gradient(135deg,#d4af37,#c09c2e);
+            color:#fff;
+        }
+        .toolbar .actions button.admin:hover {
+            box-shadow:0 4px 20px rgba(212,175,55,0.4);
+        }
+        .toolbar .actions button.danger {
+            background:linear-gradient(135deg,#b22222,#8b1a1a);
+            color:#fff;
+        }
+        .toolbar .actions button.danger:hover {
+            box-shadow:0 4px 20px rgba(178,34,34,0.4);
+        }
+        .alert {
+            padding:12px 20px;
+            border-radius:12px;
+            margin:10px 0 20px;
+            display:none;
+            font-weight:500;
+            font-size:0.9rem;
+            border-left:5px solid;
+        }
+        .alert.success { background:#e6f7e6; border-left-color:#2c7a4a; color:#1a5a2a; }
+        .alert.warning { background:#fff3cd; border-left-color:#d4af37; color:#856404; }
+        .alert.error { background:#fce4e4; border-left-color:#b22222; color:#721c24; }
+        .alert.info { background:#e8f0fe; border-left-color:#0b3b5c; color:#0b3b5c; }
+        .table-wrapper {
+            overflow-x:auto;
+            border-radius:16px;
+            border:1px solid #e8edf2;
+            background:#fff;
+        }
+        table {
+            width:100%;
+            border-collapse:collapse;
+            font-size:0.85rem;
+            min-width:950px;
+        }
+        th {
+            background:linear-gradient(180deg,#0b3b5c,#1a5276);
+            color:#fff;
+            font-weight:600;
+            padding:14px 8px;
+            text-align:center;
+            white-space:nowrap;
+            font-size:0.78rem;
+            letter-spacing:0.3px;
+        }
+        th i {
+            margin-right:4px;
+            color:#d4af37;
+        }
+        td {
+            padding:10px 6px;
+            border-bottom:1px solid #f0f2f5;
+            text-align:center;
+            vertical-align:middle;
+        }
+        tr:last-child td { border-bottom:none; }
+        tr:hover td { background:#f8fafc; }
+        td .nome { font-weight:500; text-align:left; font-size:0.82rem; }
+        td .posto {
+            color:#0b3b5c;
+            font-weight:700;
+            white-space:nowrap;
+            background:#e8edf2;
+            padding:2px 10px;
+            border-radius:20px;
+            display:inline-block;
+            font-size:0.75rem;
+        }
+        select {
+            padding:6px 4px;
+            border:2px solid #e2e8f0;
+            border-radius:8px;
+            background:#fff;
+            font-size:0.8rem;
+            width:100%;
+            max-width:100px;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        select:not(:disabled):hover {
+            border-color:#0b3b5c;
+        }
+        select:disabled {
+            background:#f5f6f8;
+            color:#8a9aa8;
+            cursor:not-allowed;
+            opacity:0.7;
+        }
+        select:focus {
+            outline:none;
+            border-color:#0b3b5c;
+            box-shadow:0 0 0 3px rgba(11,59,92,0.1);
+        }
+        .antecipacao select { max-width:85px; }
+        .info-antecipacao {
+            font-size:0.65rem;
+            color:#6a7a8a;
+            display:block;
+            margin-top:2px;
+            font-style:italic;
+        }
+        tr.linha-usuario {
+            background:linear-gradient(90deg,#fff9e6,#fff3c9) !important;
+            border-left:5px solid #d4af37;
+        }
+        tr.linha-usuario td {
+            background:transparent !important;
+        }
+        tr.linha-usuario:hover td {
+            background:#fff3c9 !important;
+        }
+        .btn-editar {
+            padding:5px 14px;
+            border:none;
+            border-radius:20px;
+            font-size:0.7rem;
+            font-weight:700;
+            background:linear-gradient(135deg,#0b3b5c,#1a5276);
+            color:#fff;
+            cursor:pointer;
+            transition:0.3s;
+            white-space:nowrap;
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+        }
+        .btn-editar:hover {
+            transform:translateY(-2px);
+            box-shadow:0 4px 15px rgba(11,59,92,0.3);
+        }
+        .btn-editar:disabled {
+            background:#a0b0c0;
+            cursor:not-allowed;
+            transform:none;
+            box-shadow:none;
+        }
+        .status-linha {
+            font-size:0.7rem;
+            font-weight:600;
+            padding:4px 14px;
+            border-radius:20px;
+            display:inline-flex;
+            align-items:center;
+            gap:4px;
+        }
+        .status-linha.bloqueado {
+            background:#fce4e4;
+            color:#b22222;
+        }
+        .status-linha.editavel {
+            background:#e6f7e6;
+            color:#2c7a4a;
+        }
+        .status-linha.nao-identificado {
+            background:#e8edf2;
+            color:#8a9aa8;
+        }
+        #adminModal {
+            display:none;
+            background:#fff;
+            border-radius:20px;
+            box-shadow:0 20px 60px rgba(0,0,0,0.2);
+            padding:30px 35px;
+            max-width:450px;
+            margin:20px auto;
+            border:2px solid #d4af37;
+            position:relative;
+        }
+        #adminModal::before {
+            content:'';
+            position:absolute;
+            top:-2px;
+            left:20%;
+            right:20%;
+            height:4px;
+            background:linear-gradient(90deg,#0b3b5c,#d4af37,#0b3b5c);
+            border-radius:4px;
+        }
+        #adminModal h3 {
+            color:#0b3b5c;
+            margin-bottom:16px;
+            font-size:1.2rem;
+            display:flex;
+            align-items:center;
+            gap:10px;
+        }
+        #adminModal h3 i {
+            color:#d4af37;
+        }
+        #adminModal label {
+            display:block;
+            font-weight:600;
+            font-size:0.85rem;
+            margin:10px 0 4px;
+            color:#1e2a3a;
+        }
+        #adminModal input {
+            width:100%;
+            padding:10px 14px;
+            border:2px solid #e2e8f0;
+            border-radius:10px;
+            font-size:0.95rem;
+            transition:0.3s;
+        }
+        #adminModal input:focus {
+            outline:none;
+            border-color:#0b3b5c;
+        }
+        #adminModal button {
+            margin-top:10px;
+            padding:10px 24px;
+            border:none;
+            border-radius:30px;
+            background:linear-gradient(135deg,#0b3b5c,#1a5276);
+            color:#fff;
+            font-weight:600;
+            cursor:pointer;
+            font-size:0.9rem;
+            transition:0.3s;
+        }
+        #adminModal button:hover {
+            transform:translateY(-2px);
+            box-shadow:0 4px 15px rgba(11,59,92,0.3);
+        }
+        #adminModal .close {
+            background:#6c7a8a;
+        }
+        #adminModal .close:hover {
+            background:#5a6b7a;
+        }
+        #adminModal .admin-actions {
+            display:flex;
+            flex-wrap:wrap;
+            gap:10px;
+            margin-top:16px;
+        }
+        #adminModal .admin-actions button {
+            flex:1;
+            min-width:80px;
+            font-size:0.8rem;
+        }
+        .footer {
+            margin-top:25px;
+            text-align:center;
+            color:#8a9aa8;
+            font-size:0.75rem;
+            border-top:1px solid #e8edf2;
+            padding-top:18px;
+        }
+        .footer i {
+            color:#d4af37;
+        }
+        @media (max-width:768px) {
+            .header { flex-direction:column; align-items:flex-start; gap:12px; }
+            .header-left .titulo h1 { font-size:1.3rem; }
+            .header-left .logo-pmdf { width:45px; height:45px; }
+            .header-left .logo-pmdf img { width:38px; height:38px; }
+            .toolbar { flex-direction:column; align-items:stretch; }
+            .toolbar .identificacao { justify-content:center; }
+            .toolbar .identificacao input { width:100%; }
+            .toolbar .actions { justify-content:center; }
+            th,td { padding:6px 4px; font-size:0.75rem; }
+            select { font-size:0.7rem; max-width:75px; }
+            #adminModal { padding:20px; margin:10px; }
+            .container { padding:15px; }
+            .header { margin:-15px -15px 15px -15px; padding:15px; border-radius:16px 16px 0 0; }
+        }
+        @media (max-width:480px) {
+            table { font-size:0.65rem; min-width:750px; }
+            select { max-width:65px; font-size:0.65rem; }
+            .header-left .titulo h1 { font-size:1.1rem; }
+            .header-left .titulo h1 small { font-size:0.7rem; }
+        }
+        .loading {
+            text-align:center;
+            padding:30px;
+            color:#8a9aa8;
+        }
+        .loading i {
+            font-size:2rem;
+            color:#d4af37;
+            margin-bottom:10px;
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-left">
+            <div class="logo-pmdf">
+                <img src="https://i.ibb.co/5ggZ6xCT/PMDF-Bras-o.jpg" alt="PMDF Brasão" />
+            </div>
+            <div class="titulo">
+                <h1>
+                    <i class="fas fa-calendar-alt" style="color:#d4af37;margin-right:8px;"></i>
+                    Férias SOP
+                    <small>Subchefia de Ordem Pública – Polícia Militar do DF</small>
+                </h1>
+            </div>
+        </div>
+        <div class="header-right">
+            <span class="badge"><i class="fas fa-shield-alt"></i> 2027</span>
+            <span class="badge" style="background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);">
+                <i class="fas fa-users"></i> 44 Policiais
+            </span>
+        </div>
+    </div>
+
+    <div class="toolbar">
+        <div class="identificacao">
+            <label for="inputMatricula"><i class="fas fa-id-card"></i> Matrícula:</label>
+            <input type="text" id="inputMatricula" placeholder="Ex: 50.601/X" />
+            <button id="btnIdentificar"><i class="fas fa-check-circle"></i> Identificar</button>
+            <span class="usuario-atual" id="usuarioAtual"></span>
+        </div>
+        <div class="actions">
+            <button id="btnAdmin" class="admin"><i class="fas fa-crown"></i> Admin</button>
+            <button id="btnExportar" class="admin"><i class="fas fa-file-csv"></i> CSV</button>
+            <button id="btnLimpar" class="danger"><i class="fas fa-trash-alt"></i> Limpar</button>
+        </div>
+    </div>
+
+    <div id="mensagem" class="alert"></div>
+
+    <div id="adminModal">
+        <h3><i class="fas fa-crown"></i> Painel Administrador</h3>
+        <label for="adminSenha"><i class="fas fa-lock"></i> Senha</label>
+        <input type="password" id="adminSenha" placeholder="Digite a senha" />
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;">
+            <button id="btnDesbloquear"><i class="fas fa-unlock"></i> Desbloquear</button>
+            <button id="btnFecharAdmin" class="close"><i class="fas fa-times"></i> Fechar</button>
+        </div>
+        <div id="adminMensagem" style="margin-top:8px;color:#b22222;font-weight:500;font-size:0.9rem;"></div>
+        <hr style="margin:14px 0;border-color:#e8edf2;" />
+        <label for="adminMatriculaDesbloq"><i class="fas fa-user-edit"></i> Matrícula para desbloquear</label>
+        <input type="text" id="adminMatriculaDesbloq" placeholder="Digite a matrícula" />
+        <button id="btnDesbloquearExec" style="width:100%;margin-top:6px;"><i class="fas fa-unlock-alt"></i> Desbloquear</button>
+        <div class="admin-actions">
+            <button id="btnExportarAdmin"><i class="fas fa-file-csv"></i> Exportar CSV</button>
+            <button id="btnLimparAdmin" class="danger"><i class="fas fa-trash-alt"></i> Limpar todos</button>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th><i class="fas fa-user-tie"></i> Posto/Graduação</th>
+                    <th style="text-align:left;"><i class="fas fa-user"></i> Nome</th>
+                    <th><i class="fas fa-id-badge"></i> Matrícula</th>
+                    <th><i class="fas fa-1"></i> Opção 1</th>
+                    <th><i class="fas fa-2"></i> Opção 2</th>
+                    <th><i class="fas fa-3"></i> Opção 3</th>
+                    <th><i class="fas fa-4"></i> Opção 4</th>
+                    <th><i class="fas fa-5"></i> Opção 5</th>
+                    <th><i class="fas fa-6"></i> Opção 6</th>
+                    <th class="antecipacao">
+                        <i class="fas fa-coins"></i> Antecipação 13º Salário
+                        <span class="info-antecipacao" style="color:#d4af37;font-size:0.55rem;display:block;font-weight:300;">
+                            <i class="fas fa-info-circle"></i> Apenas para férias no 1º semestre (jan-jun)
+                        </span>
+                    </th>
+                    <th style="min-width:90px;"><i class="fas fa-tasks"></i> Status</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaCorpo">
+                <tr><td colspan="11" class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando dados...</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <i class="fas fa-shield-alt"></i> Polícia Militar do Distrito Federal – Subchefia de Ordem Pública
+        <span style="margin:0 10px;">•</span> <i class="fas fa-calendar-check"></i> Férias 2027
+        <span style="margin:0 10px;">•</span> <i class="fas fa-info-circle"></i> Antecipação do 13º apenas para férias no 1º semestre
+    </div>
+</div>
+
+<script>
+    // ================================================================
+    // 1. CONFIGURAÇÃO - URL DO APPS SCRIPT
+    // ================================================================
+    const API_URL = 'https://script.google.com/macros/s/AKfycby1VgbPzCxSR6WucRYrgtM0B2YyxF4-XH47aQu7P_sP1sor-7uqA_oG32Xqqtl667nrKg/exec';
+
+    // ================================================================
+    // 2. LISTA COMPLETA DOS 44 POLICIAIS
+    // ================================================================
+    const POLICIAIS = [
+        { matricula: "50.601/X", posto: "CEL", nome: "FABRÍCIO XAVIER LUSTOSA MASCARENHAS" },
+        { matricula: "50.862/4", posto: "TC", nome: "GLEISON BEZERRA DE LIMA" },
+        { matricula: "23.890/2", posto: "MAJ", nome: "REGILSON GOMES DA SILVA" },
+        { matricula: "73.103/X", posto: "MAJ", nome: "MARIO VITOR BARBOSA MAGALHAES" },
+        { matricula: "81.182/3", posto: "MAJ", nome: "CARLOS ROBERTO MOREIRA FILHO" },
+        { matricula: "23.143/6", posto: "CAP", nome: "ADILSON ARAUJO LIMA" },
+        { matricula: "23.933/X", posto: "ST", nome: "RICARDO SALDANHA GUEDES" },
+        { matricula: "22.007/8", posto: "1º SGT", nome: "CLEUBER CANDIDO DA SILVA" },
+        { matricula: "22.053/1", posto: "1º SGT", nome: "GILMARIO CORCINO PEIXOTO" },
+        { matricula: "22.723/4", posto: "1º SGT", nome: "LUIZ GEORGE GOMES LIMA" },
+        { matricula: "22.645/9", posto: "1º SGT", nome: "CARLOS HENRIQUE PACIFICO SILVA LIMA" },
+        { matricula: "23.673/X", posto: "1º SGT", nome: "HELTON CESAR RODRIGUES DE VASCONCELOS" },
+        { matricula: "24.151/2", posto: "1º SGT", nome: "JOAO HENRIQUE PEREIRA COTRIM" },
+        { matricula: "24.157/1", posto: "1º SGT", nome: "JOSE OTAVIO DE MOURA TELES" },
+        { matricula: "72.697/4", posto: "1º SGT", nome: "ANELIO BELCHIOR GUIMARAES" },
+        { matricula: "74.310/0", posto: "1º SGT", nome: "FABRICIO AYRES SIQUEIRA" },
+        { matricula: "74.244/9", posto: "1º SGT", nome: "WESLEI CRISTIAN ARAUJO VIEIRA MOURA" },
+        { matricula: "74.225/2", posto: "2º SGT", nome: "ALEX FERREIRA DE OLIVEIRA" },
+        { matricula: "74.373/9", posto: "2º SGT", nome: "ANA CAROLINA LOPES LEITE BORGES" },
+        { matricula: "196.029/6", posto: "2º SGT", nome: "MARCELO GURGEL DA SILVA" },
+        { matricula: "195.942/5", posto: "2º SGT", nome: "CAYO HENRIQUE FERREIRA SANTORO" },
+        { matricula: "196.709/6", posto: "2º SGT", nome: "RONEY ARAUJO SILVA JUNIOR" },
+        { matricula: "199.904/4", posto: "2º SGT", nome: "GENILDO VALENTIM MARTINS" },
+        { matricula: "199.893/5", posto: "2º SGT", nome: "FRANCISCO HOLANDA CELESTINO JUNIOR" },
+        { matricula: "216.131/1", posto: "2º SGT", nome: "ALAN DE LIMA FARIA" },
+        { matricula: "215.958/9", posto: "2º SGT", nome: "ANDERSON PEREIRA DA SILVA" },
+        { matricula: "215.603/2", posto: "2º SGT", nome: "DIEGO AIRES DE LIMA" },
+        { matricula: "215.199/5", posto: "2º SGT", nome: "ROBERTO TAVARES MENDONCA" },
+        { matricula: "215.642/3", posto: "2º SGT", nome: "JOAO TEODOZIO DA SILVA" },
+        { matricula: "215.019/0", posto: "2º SGT", nome: "MARCIO DE SOUZA LOPES" },
+        { matricula: "731.495/7", posto: "2º SGT", nome: "DIOVANE ALVES DA SILVA" },
+        { matricula: "731.566/X", posto: "2º SGT", nome: "RONAN ARAUJO DE ALCANTARA" },
+        { matricula: "732.156/2", posto: "2º SGT", nome: "FELIPE ARAUJO XIMENES" },
+        { matricula: "732.301/8", posto: "2º SGT", nome: "SILVIO ESTEVES COUTINHO JUNIOR" },
+        { matricula: "731.393/4", posto: "2º SGT", nome: "ADRIANA FONSÊCA SOUSA" },
+        { matricula: "733.138/X", posto: "3º SGT", nome: "ETERNO TOMAZ BORGES SOBRINHO" },
+        { matricula: "732.786/2", posto: "3º SGT", nome: "FELIPE CESAR DE SOUZA DE RIBEIRO" },
+        { matricula: "732.853/2", posto: "3º SGT", nome: "ARTHUR SOUZA NAGASAVA" },
+        { matricula: "733.075/8", posto: "3º SGT", nome: "THIAGO BELISARIO DOS SANTOS" },
+        { matricula: "732.579/7", posto: "3º SGT", nome: "FABIO SAMPAIO RODRIGUES" },
+        { matricula: "732.803/6", posto: "3º SGT", nome: "MICAEL LUIZ FERREIRA VINHAL" },
+        { matricula: "732.878/8", posto: "3º SGT", nome: "ECIO SOUZA DE ALBUQUERQUE" },
+        { matricula: "732.578/9", posto: "3º SGT", nome: "ALLAN MONTENEGRO DOS SANTOS" },
+        { matricula: "735.468/1", posto: "CB", nome: "JOAO FILLIPE CIPRIANO JACINTO" }
+    ];
+
+    const SENHA_ADMIN = "admin2026";
+    const meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+
+    // ================================================================
+    // 3. ESTADO E REFERÊNCIAS DOM
+    // ================================================================
+    let dadosLocais = {};
+    let usuarioMatricula = null;
+    let modoAdmin = false;
+
+    const inputMatricula = document.getElementById('inputMatricula');
+    const btnIdentificar = document.getElementById('btnIdentificar');
+    const usuarioAtual = document.getElementById('usuarioAtual');
+    const tabelaCorpo = document.getElementById('tabelaCorpo');
+    const mensagemDiv = document.getElementById('mensagem');
+    const btnAdmin = document.getElementById('btnAdmin');
+    const adminModal = document.getElementById('adminModal');
+    const adminSenha = document.getElementById('adminSenha');
+    const adminMensagem = document.getElementById('adminMensagem');
+    const btnDesbloquear = document.getElementById('btnDesbloquear');
+    const btnFecharAdmin = document.getElementById('btnFecharAdmin');
+    const adminMatriculaDesbloq = document.getElementById('adminMatriculaDesbloq');
+    const btnDesbloquearExec = document.getElementById('btnDesbloquearExec');
+    const btnExportar = document.getElementById('btnExportar');
+    const btnLimpar = document.getElementById('btnLimpar');
+    const btnExportarAdmin = document.getElementById('btnExportarAdmin');
+    const btnLimparAdmin = document.getElementById('btnLimparAdmin');
+
+    // ================================================================
+    // 4. FUNÇÕES DE API
+    // ================================================================
+    async function carregarDaAPI() {
+        try {
+            const resp = await fetch(API_URL + '?acao=ler');
+            if (!resp.ok) throw new Error('Erro ao buscar dados');
+            const data = await resp.json();
+            dadosLocais = {};
+            data.forEach(row => {
+                const mat = row.matricula;
+                if (!mat) return;
+                dadosLocais[mat] = {
+                    opcoes: [
+                        row.opcao1 || '',
+                        row.opcao2 || '',
+                        row.opcao3 || '',
+                        row.opcao4 || '',
+                        row.opcao5 || '',
+                        row.opcao6 || ''
+                    ],
+                    antecipacao: row.antecipacao || '',
+                    bloqueado: row.bloqueado === 'TRUE' || row.bloqueado === true
+                };
+            });
+            POLICIAIS.forEach(p => {
+                if (!dadosLocais[p.matricula]) {
+                    dadosLocais[p.matricula] = { opcoes: ['','','','','',''], antecipacao: '', bloqueado: false };
+                }
+            });
+            renderizarTabela();
+        } catch (err) {
+            mostrarMensagem('Erro ao carregar dados: ' + err.message, 'error');
+            POLICIAIS.forEach(p => {
+                if (!dadosLocais[p.matricula]) {
+                    dadosLocais[p.matricula] = { opcoes: ['','','','','',''], antecipacao: '', bloqueado: false };
+                }
+            });
+            renderizarTabela();
+        }
+    }
+
+    async function salvarNaAPI(matricula, dados) {
+        const payload = {
+            acao: 'salvar',
+            matricula: matricula,
+            posto: POLICIAIS.find(p => p.matricula === matricula)?.posto || '',
+            nome: POLICIAIS.find(p => p.matricula === matricula)?.nome || '',
+            opcao1: dados.opcoes[0] || '',
+            opcao2: dados.opcoes[1] || '',
+            opcao3: dados.opcoes[2] || '',
+            opcao4: dados.opcoes[3] || '',
+            opcao5: dados.opcoes[4] || '',
+            opcao6: dados.opcoes[5] || '',
+            antecipacao: dados.antecipacao || '',
+            bloqueado: dados.bloqueado ? 'TRUE' : 'FALSE'
+        };
+        await fetch(API_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+        return true;
+    }
+
+    // ================================================================
+    // 5. RENDERIZAÇÃO
+    // ================================================================
+    function getSelectOptions(selected) {
+        let html = '<option value="">Selecione</option>';
+        meses.forEach(m => {
+            const sel = (m === selected) ? 'selected' : '';
+            html += <option value="${m}" ${sel}>${m}</option>;
+        });
+        return html;
+    }
+
+    function isPrimeiroSemestre(mes) {
+        if (!mes) return false;
+        const idx = meses.indexOf(mes);
+        return idx >= 0 && idx < 6;
+    }
+
+    function temOpcaoPrimeiroSemestre(opcoes) {
+        if (!opcoes) return false;
+        return opcoes.some(m => isPrimeiroSemestre(m));
+    }
+
+    function renderizarTabela() {
+        let html = '';
+        POLICIAIS.forEach(p => {
+            const dados = dadosLocais[p.matricula] || { opcoes: ['','','','','',''], antecipacao: '', bloqueado: false };
+            const opcoes = dados.opcoes || [];
+            while (opcoes.length < 6) opcoes.push('');
+            const antecipacao = dados.antecipacao || '';
+            const showAntecipacao = temOpcaoPrimeiroSemestre(opcoes);
+            const bloqueado = dados.bloqueado === true;
+
+            const isUsuario = (usuarioMatricula === p.matricula);
+            const podeEditar = isUsuario && !bloqueado && usuarioMatricula !== null;
+
+            const classeLinha = isUsuario ? 'linha-usuario' : '';
+
+            html += <tr class="${classeLinha}" data-matricula="${p.matricula}">;
+            html += <td><span class="posto">${p.posto}</span></td>;
+            html += <td class="nome">${p.nome}</td>;
+            html += <td><strong>${p.matricula}</strong></td>;
+
+            for (let i = 0; i < 6; i++) {
+                const val = opcoes[i] || '';
+                const disabled = !podeEditar ? 'disabled' : '';
+                html += `<td><select data-matricula="${p.matricula}" data-opcao="${i}" ${disabled}>
+                            ${getSelectOptions(val)}
+                        </select></td>`;
+            }
+
+            html += <td class="antecipacao">;
+            if (showAntecipacao) {
+                const disabled = !podeEditar ? 'disabled' : '';
+                html += `<select data-matricula="${p.matricula}" data-campo="antecipacao" ${disabled}>
+                            <option value="">Selecione</option>
+                            <option value="sim" ${antecipacao === 'sim' ? 'selected' : ''}>Sim</option>
+                            <option value="nao" ${antecipacao === 'nao' ? 'selected' : ''}>Não</option>
+                        </select>`;
+                html += <span class="info-antecipacao"><i class="fas fa-info-circle"></i> Somente 1º semestre</span>;
+            } else {
+                html += <span style="color:#8a9aa8;font-size:0.75rem;">—</span>;
+                html += <span class="info-antecipacao"><i class="fas fa-info-circle"></i> Nenhuma opção no 1º semestre</span>;
+            }
+            html += </td>;
+
+            html += <td>;
+            if (isUsuario) {
+                if (bloqueado) {
+                    html += <span class="status-linha bloqueado"><i class="fas fa-lock"></i> Bloqueado</span>;
+                } else {
+                    const hasSelection = opcoes.some(o => o !== '');
+                    html += `<button class="btn-editar" data-acao="salvar" data-matricula="${p.matricula}">
+                                <i class="fas ${hasSelection ? 'fa-save' : 'fa-edit'}"></i>
+                                ${hasSelection ? 'Salvar' : 'Editar'}
+                            </button>`;
+                    html += <span class="info-antecipacao" style="margin-top:4px;">Clique para salvar suas opções</span>;
+                }
+            } else {
+                if (usuarioMatricula === null) {
+                    html += <span class="status-linha nao-identificado"><i class="fas fa-user-slash"></i> Não identificado</span>;
+                } else {
+                    html += <span class="status-linha nao-identificado"><i class="fas fa-lock"></i> Não editável</span>;
+                }
+            }
+            html += </td>;
+            html += </tr>;
+        });
+
+        tabelaCorpo.innerHTML = html;
+
+        tabelaCorpo.querySelectorAll('.btn-editar').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const matricula = this.dataset.matricula;
+                salvarEBloquear(matricula);
+            });
+        });
+
+        if (usuarioMatricula) {
+            const policial = POLICIAIS.find(p => p.matricula === usuarioMatricula);
+            if (policial) {
+                usuarioAtual.textContent = 👤 ${policial.nome} (${policial.matricula});
+            } else {
+                usuarioAtual.textContent = '';
+            }
+        } else {
+            usuarioAtual.textContent = '';
+        }
+    }
+
+    // ================================================================
+    // 6. SALVAR E BLOQUEAR
+    // ================================================================
+    async function salvarEBloquear(matricula) {
+        if (!confirm(Tem certeza que deseja salvar e bloquear as férias para a matrícula ${matricula}?)) {
+            return;
+        }
+
+        const linha = document.querySelector(tr[data-matricula="${matricula}"]);
+        if (!linha) return;
+
+        const selects = linha.querySelectorAll('select');
+        const opcoes = [];
+        let antecipacao = '';
+        selects.forEach(sel => {
+            const opcao = sel.dataset.opcao;
+            const campo = sel.dataset.campo;
+            if (opcao !== undefined) {
+                opcoes[parseInt(opcao)] = sel.value;
+            } else if (campo === 'antecipacao') {
+                antecipacao = sel.value;
+            }
+        });
+
+        const dados = {
+            opcoes: opcoes,
+            antecipacao: antecipacao,
+            bloqueado: true
+        };
+
+        dadosLocais[matricula] = dados;
+
+        try {
+            await salvarNaAPI(matricula, dados);
+            mostrarMensagem(✅ Férias salvas e bloqueadas para ${matricula}., 'success');
+            await carregarDaAPI();
+        } catch (err) {
+            mostrarMensagem('❌ Erro ao enviar para a planilha: ' + err.message, 'error');
+            renderizarTabela();
+        }
+    }
+
+    // ================================================================
+    // 7. ADMIN: DESBLOQUEAR
+    // ================================================================
+    async function desbloquearLinha(matricula) {
+        if (!dadosLocais[matricula]) {
+            adminMensagem.textContent = '❌ Matrícula não encontrada.';
+            adminMensagem.style.color = '#b22222';
+            return;
+        }
+        dadosLocais[matricula].bloqueado = false;
+        try {
+            await salvarNaAPI(matricula, dadosLocais[matricula]);
+            adminMensagem.textContent = ✅ Linha ${matricula} desbloqueada com sucesso!;
+            adminMensagem.style.color = '#2c7a4a';
+            await carregarDaAPI();
+        } catch (err) {
+            adminMensagem.textContent = '❌ Erro ao desbloquear: ' + err.message;
+            adminMensagem.style.color = '#b22222';
+            renderizarTabela();
+        }
+    }
+
+    // ================================================================
+    // 8. EXPORTAR CSV
+    // ================================================================
+    function exportarCSV() {
+        let csv = 'Posto/Grad,Nome,Matrícula,Opção1,Opção2,Opção3,Opção4,Opção5,Opção6,Antecipação 13º,Bloqueado\n';
+        POLICIAIS.forEach(p => {
+            const dados = dadosLocais[p.matricula] || { opcoes: ['','','','','',''], antecipacao: '', bloqueado: false };
+            const opcoes = dados.opcoes || [];
+            while (opcoes.length < 6) opcoes.push('');
+            const linha = [
+                p.posto,
+                p.nome,
+                p.matricula,
+                ...opcoes,
+                dados.antecipacao || '',
+                dados.bloqueado ? 'Sim' : 'Não'
+            ].map(v => "${v}").join(',');
+            csv += linha + '\n';
+        });
+        const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'ferias_sop.csv';
+        link.click();
+        URL.revokeObjectURL(link.href);
+        mostrarMensagem('📤 CSV exportado com sucesso!', 'success');
+    }
+
+    // ================================================================
+    // 9. LIMPAR DADOS
+    // ================================================================
+    async function limparTodosDados() {
+        if (!confirm('⚠️ Tem certeza? Isso apagará TODAS as escolhas de férias.')) return;
+        for (const p of POLICIAIS) {
+            const dados = {
+                opcoes: ['','','','','',''],
+                antecipacao: '',
+                bloqueado: false
+            };
+            dadosLocais[p.matricula] = dados;
+            await salvarNaAPI(p.matricula, dados);
+        }
+        await carregarDaAPI();
+        mostrarMensagem('🗑️ Todos os dados foram limpos.', 'warning');
+    }
+
+    // ================================================================
+    // 10. MENSAGENS E AUTENTICAÇÃO ADMIN
+    // ================================================================
+    function mostrarMensagem(texto, tipo = 'info') {
+        mensagemDiv.textContent = texto;
+        mensagemDiv.className = alert ${tipo};
+        mensagemDiv.style.display = 'block';
+        setTimeout(() => {
+            mensagemDiv.style.display = 'none';
+        }, 6000);
+    }
+
+    function autenticarAdmin(senha) {
+        if (senha === SENHA_ADMIN) {
+            modoAdmin = true;
+            adminModal.style.display = 'block';
+            adminMensagem.textContent = '';
+            adminSenha.value = '';
+            return true;
+        } else {
+            adminMensagem.textContent = '❌ Senha incorreta.';
+            adminMensagem.style.color = '#b22222';
+            return false;
+        }
+    }
+
+    // ================================================================
+    // 11. EVENTOS
+    // ================================================================
+    function identificarUsuario() {
+        const mat = inputMatricula.value.trim();
+        if (!mat) {
+            mostrarMensagem('⚠️ Digite uma matrícula.', 'error');
+            return;
+        }
+        const existe = POLICIAIS.some(p => p.matricula === mat);
+        if (!existe) {
+            mostrarMensagem('❌ Matrícula não encontrada.', 'error');
+            usuarioMatricula = null;
+            sessionStorage.removeItem('usuarioMatriculaSOP');
+            renderizarTabela();
+            return;
+        }
+        usuarioMatricula = mat;
+        sessionStorage.setItem('usuarioMatriculaSOP', mat);
+        renderizarTabela();
+        mostrarMensagem(✅ Identificado como matrícula ${mat}., 'success');
+        inputMatricula.value = '';
+    }
+
+    btnIdentificar.addEventListener('click', identificarUsuario);
+    inputMatricula.addEventListener('keypress', e => { if (e.key === 'Enter') identificarUsuario(); });
+
+    btnAdmin.addEventListener('click', function() {
+        if (adminModal.style.display === 'block') {
+            adminModal.style.display = 'none';
+            modoAdmin = false;
+            adminMensagem.textContent = '';
+        } else {
+            if (modoAdmin) {
+                adminModal.style.display = 'block';
+            } else {
+                const senha = prompt('🔑 Digite a senha de administrador:');
+                if (senha !== null) {
+                    if (autenticarAdmin(senha)) {
+                        adminModal.style.display = 'block';
+                    } else {
+                        alert('❌ Senha incorreta.');
+                    }
+                }
+            }
+        }
+    });
+
+    btnFecharAdmin.addEventListener('click', function() {
+        adminModal.style.display = 'none';
+        modoAdmin = false;
+        adminMensagem.textContent = '';
+    });
+
+    btnDesbloquearExec.addEventListener('click', async function() {
+        const mat = adminMatriculaDesbloq.value.trim();
+        if (!mat) {
+            adminMensagem.textContent = '⚠️ Digite uma matrícula.';
+            adminMensagem.style.color = '#b22222';
+            return;
+        }
+        if (!modoAdmin) {
+            adminMensagem.textContent = '❌ Autentique-se como admin primeiro.';
+            adminMensagem.style.color = '#b22222';
+            return;
+        }
+        await desbloquearLinha(mat);
+        adminMatriculaDesbloq.value = '';
+    });
+
+    btnDesbloquear.addEventListener('click', function() {
+        btnDesbloquearExec.click();
+    });
+
+    btnExportar.addEventListener('click', exportarCSV);
+    btnExportarAdmin.addEventListener('click', exportarCSV);
+    btnLimpar.addEventListener('click', limparTodosDados);
+    btnLimparAdmin.addEventListener('click', limparTodosDados);
+
+    // ================================================================
+    // 12. INICIALIZAÇÃO
+    // ================================================================
+    carregarDaAPI();
+
+    const sessao = sessionStorage.getItem('usuarioMatriculaSOP');
+    if (sessao) {
+        const mat = sessao;
+        const existe = POLICIAIS.some(p => p.matricula === mat);
+        if (existe) {
+            usuarioMatricula = mat;
+        }
+    }
+
+    console.log('✅ Painel SOP/PMDF carregado com sucesso!');
+</script>
+</body>
+</html>
