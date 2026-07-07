@@ -568,7 +568,7 @@
 
 <script>
     // ================================================================
-    // 1. CONFIGURAÇÃO - URL DO APPS SCRIPT
+    // 1. CONFIGURAÇÃO - URL DO APPS SCRIPT (JÁ CORRETA)
     // ================================================================
     const API_URL = 'https://script.google.com/macros/s/AKfycby1VgBpzCxSR6WucRYrgtM0B2YyxF4-XH47aQu7P_sP1sor-7uqA_oG32Xqqtl667nrKg/exec';
 
@@ -651,13 +651,26 @@
     const btnLimparAdmin = document.getElementById('btnLimparAdmin');
 
     // ================================================================
-    // 4. FUNÇÕES DE API
+    // 4. FUNÇÕES DE API (COM PROXY CORS)
     // ================================================================
     async function carregarDaAPI() {
         try {
-            const resp = await fetch(API_URL + '?acao=ler');
-            if (!resp.ok) throw new Error('Erro ao buscar dados');
+            console.log('🔍 Tentando carregar da API:', API_URL);
+            
+            // Usar um proxy CORS para contornar o bloqueio
+            const proxyUrl = 'https://api.allorigins.win/raw?url=';
+            const url = API_URL + '?acao=ler';
+            
+            const resp = await fetch(proxyUrl + encodeURIComponent(url));
+            console.log('📡 Status da resposta:', resp.status);
+            
+            if (!resp.ok) {
+                throw new Error(HTTP error! status: ${resp.status});
+            }
+            
             const data = await resp.json();
+            console.log('✅ Dados recebidos:', data);
+            
             dadosLocais = {};
             data.forEach(row => {
                 const mat = row.matricula;
@@ -681,8 +694,10 @@
                 }
             });
             renderizarTabela();
+            mostrarMensagem('✅ Dados carregados com sucesso!', 'success');
         } catch (err) {
-            mostrarMensagem('Erro ao carregar dados: ' + err.message, 'error');
+            console.error('❌ Erro ao carregar dados:', err.message);
+            mostrarMensagem('❌ Erro ao carregar dados: ' + err.message, 'error');
             POLICIAIS.forEach(p => {
                 if (!dadosLocais[p.matricula]) {
                     dadosLocais[p.matricula] = { opcoes: ['','','','','',''], antecipacao: '', bloqueado: false };
@@ -707,12 +722,24 @@
             antecipacao: dados.antecipacao || '',
             bloqueado: dados.bloqueado ? 'TRUE' : 'FALSE'
         };
-        await fetch(API_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+        
+        // Usar o mesmo proxy para POST
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        try {
+            await fetch(proxyUrl + encodeURIComponent(API_URL), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        } catch (e) {
+            // Fallback: tentar diretamente com no-cors
+            await fetch(API_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+        }
         return true;
     }
 
